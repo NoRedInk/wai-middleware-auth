@@ -211,11 +211,11 @@ mkOauth2 :: OpenIDConnect -> Maybe (Text.Hamlet.Render ProviderUrl) -> IO OA2.OA
 mkOauth2 OpenIDConnect {..} renderUrl = do
   callbackURI <- for renderUrl $ \render -> parseAbsoluteURI $ render (ProviderUrl ["complete"]) []
   pure OA2.OAuth2
-        { oauthClientId = oidcClientId
-        , oauthClientSecret = Just oidcClientSecret
-        , oauthOAuthorizeEndpoint = authorizationEndpoint oidcMetadata
-        , oauthAccessTokenEndpoint = tokenEndpoint oidcMetadata
-        , oauthCallback = callbackURI
+        { oauth2ClientId = oidcClientId
+        , oauth2ClientSecret = Just oidcClientSecret
+        , oauth2AuthorizeEndpoint = authorizationEndpoint oidcMetadata
+        , oauth2TokenEndpoint = tokenEndpoint oidcMetadata
+        , oauth2RedirectUri = callbackURI
         }
 
 validateIdToken :: OpenIDConnect -> OA2.IdToken -> IO (Either JWT.JWTError JWT.ClaimsSet)

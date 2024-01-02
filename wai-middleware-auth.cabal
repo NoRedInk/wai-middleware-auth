@@ -1,6 +1,6 @@
-cabal-version:       1.18
+cabal-version:       2.2
 name:                wai-middleware-auth
-version:             0.2.6.0
+version:             0.2.7.0
 synopsis:            Authentication middleware that secures WAI application
 description:         Please see the README and Haddocks at <https://www.stackage.org/package/wai-middleware-auth>
 license:             MIT
@@ -26,7 +26,7 @@ library
                        Network.Wai.Auth.Config
                        Network.Wai.Auth.ClientSession
                        Network.Wai.Auth.Tools
-  build-depends:       aeson
+  build-depends:       aeson                >= 2
                      , base                 >= 4.12 && < 5
                      , base64-bytestring
                      , binary
@@ -38,7 +38,7 @@ library
                      , clientsession
                      , cookie               >= 0.4.2
                      , exceptions
-                     , hoauth2              >= 1.11
+                     , hoauth2              ^>= 2.1
                      , http-client
                      , http-client-tls
                      , http-conduit
