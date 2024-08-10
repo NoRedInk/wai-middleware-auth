@@ -100,7 +100,11 @@ main = do
           then snd <$> randomKey
           else do
             keyContent <- S.readFile keyInput
-            either error return (decodeKey keyContent <|> initKey keyContent)
+            let decodedKey =
+                  case decodeKey keyContent of
+                    Right content -> Right content
+                    Left err -> initKey keyContent
+            either error return decodedKey
       if null keyOutput
         then S.putStr key
         else S.writeFile keyOutput key
